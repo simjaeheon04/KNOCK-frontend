@@ -6,6 +6,7 @@ import {
   House,
   ArrowRight,
   ShieldCheck,
+  MessageCircle,
 } from "lucide-react";
 import {
   Heading,
@@ -30,8 +31,10 @@ export function WelcomePage() {
       <div className="welcome-grid">
         <div className="door-art" aria-hidden="true">
           <div className="welcome-art-copy">
-            <span className="art-knock">knock, knock.</span>
-            <span className="art-caption">작은 용기가 새로운 대화로</span>
+            <span className="welcome-chat-icon">
+              <MessageCircle size={29} strokeWidth={1.5} />
+            </span>
+            <span className="art-caption">천천히, 한 걸음씩</span>
           </div>
         </div>
         <div className="stack">

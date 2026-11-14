@@ -1,0 +1,621 @@
+/* KNOCK_Final_Designs.png · option 03, 단계별 안내형.
+   Presentation only: the existing routes, data and controls remain in use. */
+:root {
+  --bg: #f7faf6;
+  --primary: #276f59;
+  --ink: #264237;
+  --muted: #7b8c83;
+  --sage: #e7f3ec;
+  --border: #d8e5dc;
+  --radius: 14px;
+  background: var(--bg);
+  color: var(--ink);
+}
+.sidebar {
+  background: #e8eee7;
+}
+.brand-symbol {
+  border-color: #a4c2b1;
+}
+.sidebar nav a.active {
+  background: #d9eade;
+}
+.topbar {
+  border-color: var(--border);
+}
+.page {
+  max-width: 1120px;
+  padding-top: 32px;
+}
+.page.narrow {
+  max-width: 740px;
+}
+.page-heading {
+  margin-bottom: 30px;
+}
+.screen-progress {
+  margin-bottom: 28px;
+}
+.screen-progress-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--primary);
+  margin-bottom: 8px;
+  font-size: 17px;
+  line-height: 1.4;
+}
+.screen-progress-label small {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+.screen-progress-track {
+  height: 4px;
+  background: #d7e7db;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.screen-progress-track > span {
+  display: block;
+  height: 100%;
+  background: var(--primary);
+  border-radius: inherit;
+}
+.step-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.5;
+  margin-bottom: 7px;
+}
+.page-heading .screen-context {
+  font-size: 11px;
+  letter-spacing: 0;
+  margin: 0 0 8px;
+  color: var(--muted);
+}
+.welcome-page .screen-context,
+.home-page .screen-context {
+  display: none;
+}
+h1 {
+  font-size: 31px;
+  line-height: 1.4;
+  letter-spacing: -0.8px;
+}
+.description {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.card {
+  border-radius: var(--radius);
+  padding: 22px;
+}
+.card h2 {
+  color: var(--ink);
+}
+.card.tint {
+  background: var(--sage);
+  border-color: transparent;
+}
+.button {
+  border-radius: 14px;
+  min-height: 56px;
+}
+.button.primary:hover:not(:disabled) {
+  background: #205d49;
+}
+.button.secondary:hover:not(:disabled) {
+  background: #dcece1;
+}
+.actions > .button.text {
+  background: var(--sage);
+  color: var(--primary);
+}
+.actions {
+  gap: 8px;
+}
+.choice {
+  border-radius: 14px;
+  min-height: 94px;
+  padding: 19px;
+  gap: 12px;
+}
+.choice.selected {
+  box-shadow: none;
+  border-color: var(--primary);
+}
+fieldset,
+.scenario-grid,
+.stack:has(> .choice) {
+  counter-reset: choice;
+}
+fieldset > .choice,
+.scenario-grid > .choice,
+.stack > .choice {
+  counter-increment: choice;
+}
+fieldset > .choice::before,
+.scenario-grid > .choice::before,
+.stack > .choice::before {
+  content: counter(choice);
+  display: grid;
+  place-items: center;
+  flex: 0 0 29px;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  align-self: flex-start;
+  margin-top: 2px;
+}
+.choice.selected::before {
+  background: var(--primary);
+  color: white;
+}
+.choice .choice-icon {
+  display: none;
+}
+.choice .selection-mark {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 16px;
+  height: 16px;
+  border: 0;
+}
+.choice.selected .selection-mark {
+  display: none;
+}
+.choice strong {
+  color: var(--ink);
+}
+.choice small {
+  color: var(--muted);
+}
+.scenario-grid .choice {
+  flex-direction: row;
+  align-items: flex-start;
+  min-height: 112px;
+}
+.home-page .today-card {
+  margin-bottom: 18px;
+}
+.welcome-page .door-art {
+  min-height: 230px;
+  border-radius: var(--radius);
+}
+.welcome-page .door-art .welcome-art-copy {
+  position: static;
+  transform: none;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+}
+.welcome-chat-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: white;
+  display: grid;
+  place-items: center;
+}
+.welcome-page .door-art .art-caption {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.welcome-page .stack > .card:first-child {
+  border-color: var(--primary);
+  background: var(--sage);
+}
+.welcome-page .door-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rating button {
+  border: 0;
+  background: var(--sage);
+  border-radius: 12px;
+  color: var(--primary);
+}
+.rating button.selected {
+  color: white;
+}
+.toggle-track {
+  background: #d5e6d9;
+}
+.tag {
+  border-color: #a5c5b2;
+}
+.message {
+  border-radius: 14px;
+  border-color: var(--border);
+}
+.message.ai {
+  background: white;
+}
+.message.user {
+  background: var(--sage);
+}
+.message.ai strong {
+  color: var(--primary);
+}
+.message-icon {
+  margin-right: 10px;
+}
+.voice-zone {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr) max-content;
+  grid-template-rows: auto auto auto;
+  column-gap: 16px;
+  row-gap: 6px;
+  align-content: center;
+  align-items: center;
+  min-height: 170px;
+  padding: 22px;
+  background: var(--sage);
+  border-radius: var(--radius);
+  text-align: left;
+}
+.mic-panel-title {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.voice-status {
+  grid-column: 3;
+  grid-row: 1 / 4;
+  justify-self: end;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 20px;
+}
+.voice-zone > small {
+  grid-column: 2;
+  grid-row: 2;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 18px;
+}
+.voice-zone .voice-toggle {
+  grid-column: 2;
+  grid-row: 3;
+  font-size: 10px;
+  justify-content: flex-start;
+  padding: 0;
+  min-height: 32px;
+}
+.voice-zone .mic-button {
+  grid-column: 1;
+  grid-row: 1 / 4;
+  width: 76px;
+  height: 76px;
+  min-height: 0;
+  border: 6px solid #d8eade;
+  background: #2c7b5e;
+  box-shadow: inset 0 0 0 2px #fff;
+  margin: 0;
+}
+.voice-zone .mic-button.listening {
+  background: var(--primary);
+  box-shadow:
+    0 0 0 7px #c6e2d3,
+    inset 0 0 0 2px #fff;
+}
+.voice-zone .mic-button svg {
+  width: 28px;
+  height: 28px;
+  display: block;
+  shape-rendering: geometricPrecision;
+}
+.typing {
+  background: var(--sage) !important;
+}
+.typing p {
+  letter-spacing: 2px;
+  color: var(--primary);
+}
+.error {
+  background: #fff3ed;
+  border-color: #f0dbcf;
+  color: #a34c32;
+}
+.modal {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 22px;
+}
+.empty {
+  background: var(--sage);
+}
+.empty > svg {
+  background: white;
+  padding: 20px;
+  box-sizing: content-box;
+  border-radius: 50%;
+  color: var(--primary);
+}
+.record-row {
+  border-radius: var(--radius);
+}
+.mobile-nav {
+  background: #f7faf6f5;
+}
+.conversation-page > .conversation-toolbar {
+  margin: 24px 0 0;
+}
+@media (min-width: 601px) {
+  .conversation-page .conversation-main > .voice-zone + .text-input {
+    margin-top: 16px;
+  }
+  .page {
+    width: 100%;
+    max-width: 1600px;
+    padding: 24px clamp(24px, 2.5vw, 48px) 32px;
+  }
+  .page.narrow {
+    max-width: 1120px;
+  }
+  .topbar {
+    width: calc(100% - clamp(48px, 5vw, 96px));
+    max-width: calc(1600px - clamp(48px, 5vw, 96px));
+    margin: 0 auto;
+  }
+  .site-footer {
+    width: 100%;
+    max-width: 1600px;
+    padding: 24px clamp(24px, 2.5vw, 48px);
+  }
+}
+@media (min-width: 601px) and (max-width: 850px) {
+  main {
+    min-height: calc(100dvh - 153px);
+  }
+}
+@media (min-width: 851px) {
+  .page > .selection-layout fieldset > .choice {
+    min-height: 102px;
+  }
+  .page > .selection-layout fieldset {
+    grid-template-rows: auto repeat(3, minmax(102px, 1fr));
+  }
+}
+@media (max-width: 850px) {
+  .page {
+    padding-top: 26px;
+  }
+  .screen-progress {
+    margin-bottom: 26px;
+  }
+  h1 {
+    font-size: 28px;
+  }
+  .scenario-grid .choice {
+    min-height: 94px;
+  }
+}
+@media (max-width: 600px) {
+  .topbar {
+    height: 54px;
+  }
+  .mobile-brand {
+    font-size: 14px;
+  }
+  .page,
+  .page.narrow {
+    padding: 8px 24px 32px;
+    max-width: 480px;
+  }
+  .screen-progress {
+    margin-bottom: 27px;
+  }
+  .screen-progress-label {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .screen-progress-track {
+    height: 4px;
+  }
+  .step-label {
+    font-size: 9px;
+    margin-bottom: 6px;
+  }
+  .page-heading .screen-context {
+    font-size: 10px;
+    margin-bottom: 7px;
+  }
+  h1,
+  .conversation-page h1 {
+    font-size: 27px;
+    line-height: 1.35;
+    letter-spacing: -0.8px;
+  }
+  .description,
+  .conversation-page .description {
+    margin-top: 24px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .page-heading,
+  .welcome-page .page-heading,
+  .home-page .page-heading,
+  .conversation-page .page-heading {
+    margin-bottom: 30px;
+  }
+  .card {
+    padding: 18px;
+    border-radius: 13px;
+    min-height: 94px;
+  }
+  .card h2 {
+    font-size: 14px;
+  }
+  .card p {
+    font-size: 12px;
+  }
+  .button {
+    border-radius: 14px;
+    min-height: 56px;
+    font-size: 14px;
+  }
+  .actions {
+    margin-top: 38px;
+    gap: 8px;
+  }
+  .actions > .button.text {
+    min-height: 52px;
+    font-size: 13px;
+  }
+  .welcome-grid {
+    gap: 14px;
+  }
+  .welcome-page .door-art {
+    min-height: 150px;
+    padding: 22px;
+  }
+  .welcome-page .door-art .welcome-art-copy {
+    gap: 10px;
+  }
+  .welcome-chat-icon {
+    width: 76px;
+    height: 76px;
+  }
+  .welcome-page .process {
+    margin-top: 12px;
+  }
+  .home-page .today-card {
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .home-page .scenario-grid .choice {
+    height: auto;
+    min-height: 94px;
+    align-items: flex-start;
+    padding: 18px 16px;
+  }
+  .home-page .scenario-grid .choice strong {
+    color: var(--ink);
+    font-size: 14px;
+  }
+  .home-page .scenario-grid .choice small {
+    font-size: 11px;
+  }
+  .scenario-grid {
+    gap: 12px;
+  }
+  .choice {
+    min-height: 94px;
+    border-radius: 13px;
+    padding: 18px 16px;
+  }
+  .choice strong {
+    font-size: 14px;
+  }
+  .choice small {
+    font-size: 11px;
+  }
+  .rating {
+    gap: 10px;
+  }
+  .rating button {
+    flex: 1;
+    max-width: 49px;
+    height: 47px;
+    border-radius: 12px;
+  }
+  .conversation-page > .conversation-toolbar {
+    margin-top: 18px;
+  }
+  .conversation-toolbar .button {
+    font-size: 12px;
+    border-radius: 12px;
+  }
+  .conversation-page .screen-context {
+    font-size: 10px;
+  }
+  .message {
+    padding: 18px;
+    min-height: 112px;
+  }
+  .message strong {
+    font-size: 13px;
+  }
+  .message p {
+    font-size: 13px;
+  }
+  .voice-zone {
+    min-height: 158px;
+    grid-template-columns: 70px minmax(0, 1fr);
+    grid-template-rows: auto auto auto auto;
+    column-gap: 14px;
+    row-gap: 4px;
+    padding: 18px 14px;
+  }
+  .voice-zone .voice-status {
+    grid-column: 2;
+    grid-row: 4;
+    justify-self: start;
+  }
+  .mic-panel-title {
+    font-size: 15px;
+  }
+  .voice-status {
+    font-size: 11px;
+  }
+  .voice-zone .mic-button {
+    width: 70px;
+    height: 70px;
+  }
+  .conversation-aside > .card:first-child {
+    order: 3;
+  }
+  .conversation-aside > .card:not(:first-child) {
+    order: 3;
+  }
+  .conversation-aside > .button {
+    background: var(--sage);
+    color: var(--primary);
+  }
+  .permission-icon,
+  .safety-symbol {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 22px;
+  }
+  .site-footer {
+    color: var(--muted);
+  }
+}
+@media (max-width: 360px) {
+  .page,
+  .page.narrow {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  h1,
+  .conversation-page h1 {
+    font-size: 24px;
+  }
+  .voice-zone {
+    column-gap: 8px;
+    grid-template-columns: 70px minmax(0, 1fr);
+  }
+  fieldset > .choice::before,
+  .scenario-grid > .choice::before,
+  .stack > .choice::before {
+    flex-basis: 25px;
+    width: 25px;
+    height: 25px;
+  }
+}

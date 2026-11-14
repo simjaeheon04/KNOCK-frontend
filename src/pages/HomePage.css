@@ -21,7 +21,64 @@
   margin-top: 0;
 }
 
+.welcome-page .welcome-grid .door-art .welcome-art-copy {
+  gap: 24px;
+}
+
+.welcome-page .door-art .welcome-art-copy > .art-caption {
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+.welcome-page .door-art .welcome-chat-icon {
+  width: 144px;
+  height: 144px;
+}
+
+.welcome-page .door-art .welcome-chat-icon svg {
+  width: 60px;
+  height: 60px;
+}
+
+@media (min-width: 601px) and (max-width: 850px) {
+  .welcome-page .welcome-grid .door-art .welcome-art-copy {
+    gap: 20px;
+  }
+
+  .welcome-page .door-art .welcome-chat-icon {
+    width: 120px;
+    height: 120px;
+  }
+
+  .welcome-page .door-art .welcome-chat-icon svg {
+    width: 56px;
+    height: 56px;
+  }
+
+  .welcome-page .door-art .welcome-art-copy > .art-caption {
+    font-size: 32px;
+  }
+}
+
 @media (max-width: 600px) {
+  .welcome-page .welcome-grid .door-art .welcome-art-copy {
+    gap: 4px;
+  }
+
+  .welcome-page .door-art .welcome-art-copy > .art-caption {
+    font-size: clamp(20px, 5.6vw, 22px);
+    line-height: 1.18;
+  }
+
+  .welcome-page .door-art .welcome-chat-icon {
+    width: 76px;
+    height: 76px;
+  }
+
+  .welcome-page .door-art .welcome-chat-icon svg {
+    width: 48px;
+    height: 48px;
+  }
   .welcome-page .door-art .welcome-art-copy {
     left: 18px;
     right: 18px;

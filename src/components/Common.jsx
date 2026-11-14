@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
+import { useKnock } from "../context/KnockContext";
 import {
   ArrowRight,
   Check,
@@ -29,9 +31,65 @@ export function Button({
   );
 }
 export function Heading({ eyebrow, children, description }) {
+  const { pathname } = useLocation();
+  const { session, records } = useKnock();
+  const steps = {
+    "/": 1,
+    "/home": 2,
+    "/goals": 3,
+    "/prepare": 4,
+    "/conversation": 5,
+    "/report": 6,
+    "/retry": 7,
+    "/missions": 8,
+    "/records": records.length ? 9 : 28,
+    "/safety": 10,
+    "/permission": 17,
+    "/confidence/before": 18,
+    "/confidence/after": 21,
+    "/records/settings": 26,
+  };
+  let step = steps[pathname] || (pathname.startsWith("/records/") ? 25 : null);
+  if (pathname === "/conversation") {
+    step =
+      { listening: 11, processing: 12, paused: 14, error: 15 }[
+        session?.status
+      ] || (session?.hint ? 13 : session?.turnIndex > 0 ? 19 : 5);
+  }
+  // These labels already describe the local view; no practice state is changed.
+  if (pathname === "/missions") {
+    step =
+      {
+        "미션 기록 완료": 24,
+        "현실 미션 · 나에게 맞게": 22,
+        "현실 미션 · 시도 기록": 23,
+      }[eyebrow] || 8;
+  }
+  if (pathname === "/retry" && eyebrow === "같은 장면, 새로운 한 문장")
+    step = 16;
   return (
     <header className="page-heading">
-      <p className="eyebrow">{eyebrow}</p>
+      {step && (
+        <div className="screen-progress">
+          <div className="screen-progress-label">
+            <span>KNOCK</span>
+            <small>{String(step).padStart(2, "0")} / 28</small>
+          </div>
+          <div
+            className="screen-progress-track"
+            role="img"
+            aria-label={`디자인 화면 ${step} / 28`}
+          >
+            <span style={{ width: `${(step / 28) * 100}%` }} />
+          </div>
+        </div>
+      )}
+      {step && <p className="step-label">STEP {step}</p>}
+      <p className="eyebrow screen-context">
+        {typeof eyebrow === "string"
+          ? eyebrow.replace(/^STEP \d+ · /, "")
+          : eyebrow}
+      </p>
       <h1>{children}</h1>
       {description && <p className="description">{description}</p>}
     </header>
@@ -103,7 +161,7 @@ export function Empty({
     </Card>
   );
 }
-export function Modal({ title, children, onClose }) {
+export function Modal({ title, children, onClose, step }) {
   const ref = useRef();
   useEffect(() => {
     const previous = document.activeElement;
@@ -157,7 +215,20 @@ export function Modal({ title, children, onClose }) {
         >
           <X size={22} />
         </button>
-        <p className="eyebrow">KNOCK · 노크</p>
+        {step ? (
+          <div className="screen-progress">
+            <div className="screen-progress-label">
+              <span>KNOCK</span>
+              <small>{step} / 28</small>
+            </div>
+            <div className="screen-progress-track">
+              <span style={{ width: `${(step / 28) * 100}%` }} />
+            </div>
+          </div>
+        ) : (
+          <p className="eyebrow">KNOCK · 노크</p>
+        )}
+        {step && <p className="step-label">STEP {step}</p>}
         <h2 id="modal-title">{title}</h2>
         {children}
       </section>

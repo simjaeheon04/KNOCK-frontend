@@ -11,6 +11,7 @@ import {
   VolumeX,
   Check,
   Wifi,
+  MessageCircle,
 } from "lucide-react";
 import {
   Heading,
@@ -190,23 +191,6 @@ export default function ConversationPage() {
   };
   return (
     <div className="page conversation-page">
-      <div className="conversation-toolbar">
-        <Button
-          variant="secondary"
-          onClick={session.status === "paused" ? resume : pause}
-          disabled={end}
-        >
-          {session.status === "paused" ? (
-            <Play size={16} />
-          ) : (
-            <Pause size={16} />
-          )}{" "}
-          {session.status === "paused" ? "이어서 연습" : "쉬기"}
-        </Button>
-        <Button variant="secondary" onClick={openEnd}>
-          연습 종료
-        </Button>
-      </div>
       <Heading
         eyebrow={
           scenario.title +
@@ -231,6 +215,14 @@ export default function ConversationPage() {
             {session.messages.map((m) => (
               <div key={m.id} className={"message " + m.role}>
                 <strong>
+                  {m.role === "ai" && (
+                    <MessageCircle
+                      className="message-icon"
+                      size={25}
+                      strokeWidth={1.5}
+                      aria-hidden="true"
+                    />
+                  )}
                   {m.role === "ai" ? "AI · " + scenario.role : "나의 말"}
                 </strong>
                 <p>{m.text}</p>
@@ -250,11 +242,11 @@ export default function ConversationPage() {
                 마이크 입력과 대화를 멈췄어요. 진행 상황은 이 연습 안에서
                 유지돼요.
               </p>
-              <Button onClick={resume}>이어서 연습하기</Button>
             </Card>
           ) : (
             <>
               <div className="voice-zone">
+                <span className="mic-panel-title">마이크 입력</span>
                 <p role="status" className="voice-status">
                   {session.status === "listening"
                     ? "● 듣는 중"
@@ -413,8 +405,26 @@ export default function ConversationPage() {
           <PrivacyNote />
         </aside>
       </div>
+      <div className="conversation-toolbar">
+        <Button
+          variant="secondary"
+          onClick={session.status === "paused" ? resume : pause}
+          disabled={end}
+        >
+          {session.status === "paused" ? (
+            <Play size={16} />
+          ) : (
+            <Pause size={16} />
+          )}{" "}
+          {session.status === "paused" ? "이어서 연습" : "쉬기"}
+        </Button>
+        <Button variant="secondary" onClick={openEnd}>
+          연습 종료
+        </Button>
+      </div>
       {end && (
         <Modal
+          step={20}
           title={
             <>
               여기서 연습을

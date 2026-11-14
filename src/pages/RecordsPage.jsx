@@ -25,6 +25,7 @@ function DeleteModal({ id, onClose, onDeleted }) {
   const record = records.find((r) => r.id === id);
   return (
     <Modal
+      step={27}
       title={
         id ? (
           <>
